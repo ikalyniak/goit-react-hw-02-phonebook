@@ -1,10 +1,13 @@
 import React from 'react';
+import { v4 as uuidv4 } from 'uuid';
+
+const INITIAL_STATE = {
+  name: '',
+  number: '',
+};
 
 class Form extends React.Component {
-  state = {
-    name: '',
-    number: '',
-  };
+  state = { ...INITIAL_STATE };
 
   handleChange = event => {
     const { name, value } = event.currentTarget;
@@ -13,8 +16,11 @@ class Form extends React.Component {
 
   handleSubmit = event => {
     event.preventDefault();
-    console.log(this.state);
+    this.props.addContact({ id: uuidv4(), ...this.state });
+    this.reset();
   };
+
+  reset = () => this.setState({ ...INITIAL_STATE });
 
   render() {
     return (

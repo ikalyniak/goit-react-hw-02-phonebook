@@ -1,6 +1,10 @@
 import React from 'react';
 
 class Contacts extends React.Component {
+  onDelete = id => {
+    this.props.onClick(id);
+  };
+
   render() {
     const contacts = this.props.contacts;
     return (
@@ -10,6 +14,9 @@ class Contacts extends React.Component {
             <p>
               {contact.name}:{contact.number}
             </p>
+            <button type="button" onClick={() => this.onDelete(contact.id)}>
+              Delete
+            </button>
           </li>
         ))}
       </ul>
