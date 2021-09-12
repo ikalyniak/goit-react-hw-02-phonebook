@@ -13,9 +13,11 @@ class App extends React.Component {
   };
 
   addNewContact = newContact => {
-    this.setState(prevState => ({
-      contacts: [...prevState.contacts, newContact],
-    }));
+    this.state.contacts.find(elem => elem.name === newContact.name)
+      ? alert(`${newContact.name} is already in contacts`)
+      : this.setState(prevState => ({
+          contacts: [...prevState.contacts, newContact],
+        }));
   };
 
   changeFilter = event => {
@@ -53,14 +55,3 @@ class App extends React.Component {
 }
 
 export default App;
-
-/**
- * 
- * 
- * getContacts = () => {
-    const normalizedFilter = this.state.filter.toLowerCase();
-    return this.state.contacts.filter((item) =>
-      item.name.toLowerCase().includes(normalizedFilter)
-    );
-  };
- */
