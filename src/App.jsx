@@ -3,7 +3,7 @@ import React from 'react';
 import './App.css';
 import Form from './components/Form/Form';
 import Contacts from './components/Contacts/Contacts';
-import * as dataContacts from './contacts.json';
+import dataContacts from './contacts.json';
 
 class App extends React.Component {
   state = {
