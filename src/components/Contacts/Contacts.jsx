@@ -1,6 +1,14 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+
+import styles from './Contacts.module.css';
 
 class Contacts extends React.Component {
+  static propTypes = {
+    onClick: PropTypes.func.isRequired,
+    contacts: PropTypes.array.isRequired,
+  };
+
   onDelete = id => {
     this.props.onClick(id);
   };
@@ -8,7 +16,7 @@ class Contacts extends React.Component {
   render() {
     const contacts = this.props.contacts;
     return (
-      <ul>
+      <ul className={styles.contacts}>
         {contacts.map(contact => (
           <li key={contact.id}>
             <p>

@@ -1,5 +1,8 @@
 import React from 'react';
 import { v4 as uuidv4 } from 'uuid';
+import PropTypes from 'prop-types';
+
+import styles from './Form.module.css';
 
 const INITIAL_STATE = {
   name: '',
@@ -7,6 +10,10 @@ const INITIAL_STATE = {
 };
 
 class Form extends React.Component {
+  static propTypes = {
+    addContact: PropTypes.func.isRequired,
+  };
+
   state = { ...INITIAL_STATE };
 
   handleChange = event => {
@@ -24,7 +31,7 @@ class Form extends React.Component {
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
+      <form onSubmit={this.handleSubmit} className={styles.form}>
         <label htmlFor="">
           Name
           <input
@@ -35,6 +42,7 @@ class Form extends React.Component {
             pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
             title="Имя может состоять только из букв, апострофа, тире и пробелов. Например Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan и т. п."
             required
+            className={styles.input}
           />
         </label>
 
@@ -48,6 +56,7 @@ class Form extends React.Component {
             pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
             title="Номер телефона должен состоять цифр и может содержать пробелы, тире, круглые скобки и может начинаться с +"
             required
+            className={styles.input}
           />
         </label>
         <button type="submit">Add contact</button>

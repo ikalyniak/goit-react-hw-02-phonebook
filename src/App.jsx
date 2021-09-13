@@ -1,12 +1,18 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-import './App.css';
 import Form from './components/Form/Form';
 import Contacts from './components/Contacts/Contacts';
 import Filter from './components/Filter/Filter';
 import dataContacts from './contacts.json';
+import styles from './App.module.css';
 
 class App extends React.Component {
+  static propTypes = {
+    contacts: PropTypes.array,
+    filter: PropTypes.string,
+  };
+
   state = {
     contacts: dataContacts,
     filter: '',
@@ -43,7 +49,7 @@ class App extends React.Component {
     const filteredContacts = this.getContacts();
 
     return (
-      <div className="App">
+      <div className={styles.app}>
         <h1>Phonebook</h1>
         <Form addContact={this.addNewContact} />
         <h2>Contacts</h2>
